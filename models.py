@@ -7,10 +7,6 @@ class Gender(str, Enum):
     male = "male"
     female = "female"
 
-class Role(str, Enum):
-    admin = "admin"
-    user = "user"
-
 class User (BaseModel):
     id: Optional[UUID] = uuid4()
     first_name: str
@@ -18,6 +14,5 @@ class User (BaseModel):
     user_email: str
     gender: Gender
     country: str
-    roles: List[Role]
 
 
