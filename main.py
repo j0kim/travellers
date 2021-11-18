@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Form
 from typing import List
 from models import User, Gender
 from uuid import uuid4, UUID
@@ -14,6 +14,16 @@ traveller_db: List[User] = [
 @app.get("/")
 async def root():
     return {"Home": "Page!"}
+
+@app.post('/api/v1/login')
+async def login(username: str=Form(...), password: str=Form(...)):
+    return {'username': username, 'password': password}
+
+@app.post('/api/v1/signup')
+async def signup(firstname:str=Form(...), lastname:str=Form(...), username:str=Form(...), password:str=Form(...), email:str=Form(...), country:str=Form(...)):
+    return {'firsname':firstname, 'lastname': lastname, 'username': username, 'password':password, 'email': email, 'country':country}
+
+
 
 # Get users from the database
 @app.get("/api/v1/users")
